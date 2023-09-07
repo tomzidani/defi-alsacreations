@@ -3,12 +3,12 @@ import MessageHandler from "../services/MessageHandler"
 import { Currency } from "../lib/types/currency"
 
 class BitcoinChecker {
-  el: HTMLElement
+  el: Element
   selectEl?: HTMLSelectElement
   priceEl?: HTMLSpanElement
   btnEl?: HTMLButtonElement
 
-  constructor(el: HTMLElement) {
+  constructor(el: Element) {
     this.el = el
 
     this.init()

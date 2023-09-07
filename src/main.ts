@@ -1,10 +1,14 @@
+// Styles
 import "./assets/scss/main.scss"
-import BitcoinChecker from "./components/bitcoinChecker"
 
+// Components
+import BitcoinChecker from "./components/BitcoinChecker"
+
+// Once the DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   const bitcoinCheckerEl = document.querySelectorAll("[data-component='bitcoin-checker']")
 
   bitcoinCheckerEl.forEach((el) => {
-    const bitcoinChecker = new BitcoinChecker(el)
+    new BitcoinChecker(el)
   })
 })
