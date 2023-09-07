@@ -101,8 +101,12 @@ class BitcoinChecker {
    * the DOM.
    */
   async forceUpdateBitcoinValue() {
-    this.getBitcoinCurrentPrices()
-    this.updateBitcoinValueResult()
+    this.btnEl!.textContent = "..."
+
+    await this.getBitcoinCurrentPrices()
+    await this.updateBitcoinValueResult()
+
+    this.btnEl!.textContent = "Hop!"
   }
 
   /**
