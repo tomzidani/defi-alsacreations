@@ -1,9 +1,12 @@
 class MessageHandler {
+  /**
+   * Set message.
+   *
+   * @param {string} msg
+   */
   static setMessage(msg: string) {
     alert(msg)
   }
-
-  static removeMessage() {}
 }
 
 export default MessageHandler
