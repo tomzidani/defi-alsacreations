@@ -1,0 +1,32 @@
+/*
+ * Button component
+ */
+.btn {
+  display: inline-block;
+  position: relative;
+  padding: 7px 60px 7px 66px;
+
+  font-size: 30px;
+  @include montserrat--bold;
+  color: map-get($colors, primary);
+  background: map-get($colors, gray);
+  border: none;
+  border-radius: 30px;
+  text-align: center;
+  leading-trim: both;
+  cursor: pointer;
+
+  &::before {
+    position: absolute;
+    content: "";
+    width: 25px;
+    height: 25px;
+    top: 50%;
+    left: 14px;
+
+    background: url("./assets/img/plus.svg") no-repeat center;
+    background-size: contain;
+
+    transform: translateY(-50%);
+  }
+}

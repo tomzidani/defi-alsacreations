@@ -7,7 +7,25 @@
     <title>Défi Alsacréations</title>
   </head>
   <body>
-    <div id="app"></div>
+    <main class="app-checker">
+      <section class="bitcoin-checker">
+        <div class="bitcoin-checker__wrapper">
+          <h1 class="title bitcoin-checker__title">Aujourd'hui<br />BTC vaut $X</h1>
+
+          <div class="bitcoin-checker__currency">
+            <label for="currency">Monnaie:</label>
+            <select id="currency" name="currency" class="bitcoin-checker__select">
+              <option>USD</option>
+              <option>GBP</option>
+              <option>EUR</option>
+            </select>
+          </div>
+
+          <button class="btn bitcoin-checker__btn">Hop!</button>
+        </div>
+      </section>
+    </main>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

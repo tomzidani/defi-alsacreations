@@ -1,0 +1,8 @@
+/*
+ * Title component
+ */
+.title {
+  font-size: 30px;
+  @include montserrat--bold;
+  color: map-get($colors, black);
+}
