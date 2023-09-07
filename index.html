@@ -8,20 +8,20 @@
   </head>
   <body>
     <main class="app-checker">
-      <section class="bitcoin-checker">
+      <section class="bitcoin-checker" data-component="bitcoin-checker">
         <div class="bitcoin-checker__wrapper">
-          <h1 class="title bitcoin-checker__title">Aujourd'hui<br />BTC vaut $X</h1>
+          <h1 class="title bitcoin-checker__title">Aujourd'hui<br />BTC vaut <span data-value="price">X</span></h1>
 
           <div class="bitcoin-checker__currency">
             <label for="currency">Monnaie:</label>
-            <select id="currency" name="currency" class="bitcoin-checker__select">
-              <option>USD</option>
-              <option>GBP</option>
-              <option>EUR</option>
+            <select id="currency" name="currency" class="bitcoin-checker__select" data-action="currency">
+              <option value="USD" selected>USD</option>
+              <option value="GBP">GBP</option>
+              <option value="EUR">EUR</option>
             </select>
           </div>
 
-          <button class="btn bitcoin-checker__btn">Hop!</button>
+          <button class="btn bitcoin-checker__btn" data-action="save-and-update">Hop!</button>
         </div>
       </section>
     </main>
