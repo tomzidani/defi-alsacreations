@@ -1,6 +1,6 @@
-import { Currency } from "../lib/types/currency"
 import LocalStorage from "../services/LocalStorage"
 import MessageHandler from "../services/MessageHandler"
+import { Currency } from "../lib/types/currency"
 
 class BitcoinChecker {
   el: HTMLElement
@@ -14,23 +14,40 @@ class BitcoinChecker {
     this.init()
   }
 
+  /**
+   * Init component.
+   */
   init() {
     this.getElements()
 
-    this.getBitcoinCurrentPrices()
+    this.updateBitcoinValueResult()
     this.bindEvents()
   }
 
+  /**
+   * Get all needed elements.
+   */
   getElements() {
     this.btnEl = this.el.querySelector("button[data-action='save-and-update']") || undefined
     this.priceEl = this.el.querySelector("span[data-value='price']") || undefined
     this.selectEl = this.el.querySelector("select#currency[data-action='currency']") || undefined
   }
 
+  /**
+   * Get selected currency.
+   *
+   * @returns {Currency}
+   */
   getCurrency(): Currency {
     return this.selectEl?.value as Currency
   }
 
+  /**
+   * Get currency symbol.
+   *
+   * @param {Currency} currency
+   * @returns {string}
+   */
   getCurrencySymbol(currency: Currency): string {
     const CURRENCY_SYMBOLS = {
       USD: "$",
@@ -41,6 +58,9 @@ class BitcoinChecker {
     return CURRENCY_SYMBOLS[currency] || ""
   }
 
+  /**
+   * Get bitcoin current prices by calling an API.
+   */
   async getBitcoinCurrentPrices() {
     const req = await fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
 
@@ -56,6 +76,10 @@ class BitcoinChecker {
     return currentPrices
   }
 
+  /**
+   * Update bitcoin value result by
+   * getting prices and updating the DOM.
+   */
   async updateBitcoinValueResult() {
     const currency = this.getCurrency()
     const hasPrices = LocalStorage.has("bitcoinPrices")
@@ -71,13 +95,25 @@ class BitcoinChecker {
     this.priceEl!.textContent = shortenedPriceInSelectedCurrency + currencySymbol
   }
 
-  updateCurrencyValue() {}
+  /**
+   * Force to update bitcoin value
+   * by calling the API again then updating
+   * the DOM.
+   */
+  async forceUpdateBitcoinValue() {
+    this.getBitcoinCurrentPrices()
+    this.updateBitcoinValueResult()
+  }
 
+  /**
+   * Bind events to build interactions.
+   */
   bindEvents() {
-    console.log(this.selectEl)
     this.updateBitcoinValueResult = this.updateBitcoinValueResult.bind(this)
+    this.forceUpdateBitcoinValue = this.forceUpdateBitcoinValue.bind(this)
 
     this.selectEl?.addEventListener("change", this.updateBitcoinValueResult)
+    this.btnEl?.addEventListener("click", this.forceUpdateBitcoinValue)
   }
 }
 
