@@ -16,6 +16,8 @@
   leading-trim: both;
   cursor: pointer;
 
+  transition: ease-in-out 0.2s;
+
   &::before {
     position: absolute;
     content: "";
@@ -28,5 +30,13 @@
     background-size: contain;
 
     transform: translateY(-50%);
+  }
+
+  &:hover {
+    background: lighten(map-get($colors, gray), 1%);
+  }
+
+  &:active {
+    background: darken(map-get($colors, gray), 2%);
   }
 }
